@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Library</title>
+  <link rel="stylesheet" href="{% static 'mainapp/css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="account-bar">
+    {% if user.is_authenticated %}
+        <span>Welcome, {{ user.username }}!</span>
+        <a href="{% url 'profile' %}">My Account</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</div>
+
+<!-- Header -->
+<header>
+  <h1><i class="fas fa-book"></i> Where Curiosity Meets Books</h1>
+</header>
+
+<!-- About -->
+<section id="about">
+  <h2><i class="fas fa-info-circle"></i> About Our Library</h2>
+  <p>Our school library provides a wide collection of books for students of all grades. Explore, read, and learn new things every day!</p>
+</section>
+
+
+ <!-- Book Filter Buttons -->
+<div class="buttons">
+  <button onclick="filterBooks('all')">All</button>
+  <button onclick="filterBooks('math')">Math</button>
+  <button onclick="filterBooks('english')">English</button>
+  <button onclick="filterBooks('science')">Science</button>
+</div>
+
+<!-- Book Grid -->
+<div class="book-grid">
+{% for book in books %}
+  <div class="book" data-category="{{ book.category }}">
+    {% if book.image %}
+      <img src="{% static 'mainapp/image/' %}{{ book.image }}" alt="{{ book.title }} Book">
+    {% endif %}
+    <h3>{{ book.title }}</h3>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Category:</strong> {{ book.get_category_display }}</p>
+    {% if book.description %}
+      <p>{{ book.description }}</p>
+    {% endif %}
+  </div>
+{% empty %}
+  <p>No books available yet.</p>
+{% endfor %}
+</div>
+</section>
+
+<!-- Visitor Counter -->
+<section id="visitors">
+  <h2>Website Visitors</h2>
+  <p id="visitorCount">Thanks for visiting 0</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 School Library. All rights reserved.</p>
+</footer>
+
+<!-- Link to JavaScript -->
+<script src="{% static 'mainapp/js/script.js' %}"></script>
+</body>
+</html>
+
+
+

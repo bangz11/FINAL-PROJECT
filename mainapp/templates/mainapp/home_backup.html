@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Library</title>
+  <link rel="stylesheet" href="{% static 'mainapp/css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <h1><i class="fas fa-book"></i> Where Curiosity Meets Books</h1>
+</header>
+
+<!-- About -->
+<section id="about">
+  <h2><i class="fas fa-info-circle"></i> About Our Library</h2>
+  <p>Our school library provides a wide collection of books for students of all grades. Explore, read, and learn new things every day!</p>
+</section>
+
+
+ <!-- Book Filter Buttons -->
+<div class="buttons">
+  <button onclick="filterBooks('all')">All</button>
+  <button onclick="filterBooks('math')">Math</button>
+  <button onclick="filterBooks('english')">English</button>
+  <button onclick="filterBooks('science')">Science</button>
+</div>
+
+<!-- Book Grid -->
+<div class="book-grid">
+  <div class="book math">
+    <img src="{% static 'mainapp/image/math-book.jpg' %}" alt="Mathematics Book">
+    <h3>Mathematics Basics</h3>
+    <p>Author: John Doe</p>
+  </div>
+  <div class="book english">
+    <img src="{% static 'mainapp/image/english-book.jpg' %}" alt="English Grammar Book">
+    <h3>English Grammar</h3>
+    <p>Author: Jane Smith</p>
+  </div>
+  <div class="book science">
+    <img src="{% static 'mainapp/image/science-book.jpg' %}" alt="Science Experiments Book">
+    <h3>Science Experiments</h3>
+    <p>Author: Alan Brown</p>
+  </div>
+</div>
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your first name.." required>
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" placeholder="Your phone number.." required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Your email.." required>
+
+    <label for="country">Country</label>
+    <select id="country" name="country" required>
+      <option value="">Select your country</option>
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Write your message.." required></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+</section>
+
+<!-- Visitor Counter -->
+<section id="visitors">
+  <h2>Website Visitors</h2>
+  <p id="visitorCount">Thanks for visiting 0</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 School Library. All rights reserved.</p>
+</footer>
+
+<!-- Link to JavaScript -->
+<script src="{% static 'mainapp/js/script.js' %}"></script>
+</body>
+</html>
+

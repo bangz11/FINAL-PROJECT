@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Book - School Library</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mainapp/css/style.css' %}">
+</head>
+<body>
+
+<div class="account-bar">
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'profile' %}">My Account</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+
+<div class="container">
+    <h1>Edit Book</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Book Title</label>
+        <input type="text" name="title" value="{{ book.title }}" required>
+
+        <label>Author</label>
+        <input type="text" name="author" value="{{ book.author }}" required>
+
+        <label>Category</label>
+        <select name="category">
+            <option value="math" {% if book.category == "math" %}selected{% endif %}>Math</option>
+            <option value="english" {% if book.category == "english" %}selected{% endif %}>English</option>
+            <option value="science" {% if book.category == "science" %}selected{% endif %}>Science</option>
+        </select>
+
+        <label>Description</label>
+        <textarea name="description" rows="5">{{ book.description }}</textarea>
+
+        <label>Image Filename</label>
+        <input type="text" name="image" value="{{ book.image }}">
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <br>
+    <a href="{% url 'profile' %}">? Back to Profile</a>
+</div>
+
+</body>
+</html>
